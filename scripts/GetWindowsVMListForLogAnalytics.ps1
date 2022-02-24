@@ -18,9 +18,10 @@ try
             if($resource.id -clike "*MicrosoftMonitoringAgent*")
             {
                 az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n "MicrosoftMonitoringAgent"
-                $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
             }
         }
+
+        $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
     }
 
     $virtualMachineList = $filteredVirtualMachines | ConvertTo-Json

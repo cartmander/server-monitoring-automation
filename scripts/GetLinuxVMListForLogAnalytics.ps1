@@ -18,9 +18,10 @@ try
             if($resource.id -clike "*OmsAgentForLinux*")
             {
                 az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n "OmsAgentForLinux"
-                $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
             }
         }
+
+        $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
     }
 
     $virtualMachineList = $filteredVirtualMachines | ConvertTo-Json
