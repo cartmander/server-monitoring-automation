@@ -13,20 +13,12 @@ try
     {
         $virtualMachineId = $virtualMachine.id | ConvertTo-Json | % { [System.Text.RegularExpressions.Regex]::Replace($virtualMachine.id, '""', '"') }
         
-        if($virtualMachine.resources -eq $null)
+        foreach ($resource in $virtualMachine.resources)
         {
-            $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
-        }
-
-        else
-        {
-            foreach ($resource in $virtualMachine.resources)
+            if($resource.id -clike "*OmsAgentForLinux*")
             {
-                if($resource.id -clike "*OmsAgentForLinux*")
-                {
-                    az extension remove --name "OmsAgentForLinux"
-                    $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
-                }
+                az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n "OmsAgentForLinux"
+                $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
             }
         }
     }
