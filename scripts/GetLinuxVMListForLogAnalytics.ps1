@@ -5,7 +5,7 @@ $subscriptionId = $json.subscriptionId
 
 try 
 {
-    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[? contains(storageProfile.osDisk.osType, 'Linux')]"
+    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, 'Linux') && powerState=='VM running']" -d -o json
     $virtualMachinesBySubscriptionObject =  $virtualMachinesBySubscriptionJson | ConvertFrom-Json
     $filteredVirtualMachines = @{}
 
