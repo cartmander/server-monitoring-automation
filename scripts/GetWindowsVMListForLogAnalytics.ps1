@@ -15,9 +15,9 @@ try
         
         foreach ($resource in $virtualMachine.resources)
         {
-            if($resource.id -clike "*MicrosoftMonitoringAgent*")
+            if($resource.typePropertiesType -clike "*MicrosoftMonitoringAgent*")
             {
-                az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n "MicrosoftMonitoringAgent"
+                az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n $resource.name
             }
         }
 

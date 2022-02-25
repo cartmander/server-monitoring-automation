@@ -15,9 +15,9 @@ try
         
         foreach ($resource in $virtualMachine.resources)
         {
-            if($resource.id -clike "*OmsAgentForLinux*")
+            if($resource.typePropertiesType -clike "*OmsAgentForLinux*")
             {
-                az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n "OmsAgentForLinux"
+                az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n $resource.name
             }
         }
 
