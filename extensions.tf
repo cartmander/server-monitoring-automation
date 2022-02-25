@@ -12,9 +12,9 @@ resource "azurerm_virtual_machine_extension" "microsoft_monitoring_agent" {
     }
 SETTINGS
    protected_settings = <<PROTECTED_SETTINGS
-   {
+    {
       "workspaceKey": "${var.workspace_key}"
-   }
+    }
 PROTECTED_SETTINGS
 }
 
@@ -32,8 +32,8 @@ resource "azurerm_virtual_machine_extension" "oms_agent_for_linux" {
     }
 SETTINGS
    protected_settings = <<PROTECTED_SETTINGS
-   {
+    {
       "workspaceKey": "${var.workspace_key}"
-   }
+    }
 PROTECTED_SETTINGS
 }
