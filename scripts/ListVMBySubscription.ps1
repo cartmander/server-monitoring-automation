@@ -2,10 +2,12 @@ $jsonPayload = [Console]::In.ReadLine()
 $json = ConvertFrom-Json $jsonPayload
 
 $subscriptionId = $json.subscriptionId
+$osType = $json.osType
+$agent = $json.agent
 
 try 
 {
-    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, 'Linux') && powerState=='VM running']" -d -o json
+    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, $osType) && powerState=='VM running']" -d -o json
     $virtualMachinesBySubscriptionObject =  $virtualMachinesBySubscriptionJson | ConvertFrom-Json
     $filteredVirtualMachines = @{}
 
@@ -15,7 +17,7 @@ try
         
         foreach ($resource in $virtualMachine.resources)
         {
-            if($resource.typePropertiesType -clike "*OmsAgentForLinux*")
+            if($resource.typePropertiesType -eq $agent)
             {
                 az vm extension delete -g $virtualMachine.resourceGroup --vm-name $virtualMachine.name -n $resource.name
             }
