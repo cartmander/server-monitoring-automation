@@ -7,7 +7,7 @@ $agent = $json.agent
 
 try 
 {
-    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, $osType) && powerState=='VM running']" -d -o json
+    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, '$osType') && powerState=='VM running']" -d -o json
     $virtualMachinesBySubscriptionObject =  $virtualMachinesBySubscriptionJson | ConvertFrom-Json
     $filteredVirtualMachines = @{}
 
