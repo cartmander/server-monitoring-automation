@@ -1,21 +1,19 @@
-data "azurerm_client_config" "current_session" {
-
-}
-
-data "external" "get_windows_vm_list_for_log_analytics" {
-  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVMBySubscription.ps1"]
+data "external" "windows_vm_list_by_scope" {
+  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVirtualMachinesByScope.ps1"]
   query = {
-    subscriptionId = data.azurerm_client_config.current_session.subscription_id,
     osType = "Windows",
-    agent = "MicrosoftMonitoringAgent"
+    agent = "MicrosoftMonitoringAgent",
+    scopeType = "${var.scope_type}",
+    scope = "${var.scope}"
   }
 }
 
-data "external" "get_linux_vm_list_for_log_analytics" {
-  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVMBySubscription.ps1"]
+data "external" "linux_vm_list_by_scope" {
+  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVirtualMachinesByScope.ps1"]
   query = {
-    subscriptionId = data.azurerm_client_config.current_session.subscription_id,
     osType = "Linux",
-    agent = "OmsAgentForLinux"
+    agent = "OmsAgentForLinux",
+    scopeType = "${var.scope_type}",
+    scope = "${var.scope}"
   }
 }

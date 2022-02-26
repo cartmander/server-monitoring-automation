@@ -1,17 +1,28 @@
 $jsonPayload = [Console]::In.ReadLine()
 $json = ConvertFrom-Json $jsonPayload
 
-$subscriptionId = $json.subscriptionId
 $osType = $json.osType
 $agent = $json.agent
+$scopeType = $json.scopeType
+$scope = $json.scope
 
 try 
 {
-    $virtualMachinesBySubscriptionJson = az vm list --subscription $subscriptionId --query "[?contains(storageProfile.osDisk.osType, '$osType') && powerState=='VM running']" -d -o json
-    $virtualMachinesBySubscriptionObject =  $virtualMachinesBySubscriptionJson | ConvertFrom-Json
     $filteredVirtualMachines = @{}
 
-    foreach ($virtualMachine in $virtualMachinesBySubscriptionObject)
+    if ($scopeType -eq "ResourceGroup")
+    {
+        $virtualMachinesByScopeJson = az vm list --resource-group $scope --query "[?contains(storageProfile.osDisk.osType, '$osType') && powerState=='VM running']" -d -o json
+    }
+
+    elseif ($scopeType -eq "Tag")
+    {
+        #$virtualMachinesByScopeJson = az graph query -q "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | where tags['terraform']=='ddd'"
+    }
+    
+    $virtualMachinesByScopeObject =  $virtualMachinesByScopeJson | ConvertFrom-Json
+
+    foreach ($virtualMachine in $virtualMachinesByScopeObject)
     {
         $virtualMachineId = $virtualMachine.id | ConvertTo-Json | % { [System.Text.RegularExpressions.Regex]::Replace($virtualMachine.id, '""', '"') }
         
