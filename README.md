@@ -1,6 +1,6 @@
 # Azure Agent Extension Transfer Automation
 
-Running this Terraform automation will allow you to transfer your specified Log Analytics extension to a certain scope of Virtual Machines under a current subscription in Azure.
+Running this Terraform automation will allow you to replace existing Log Analytics Workspace extensions for a certain scope of virtual machines and connect them to your newly specified Log Analytics Worksplace.
 ## Terraform tfvars  variables
 
 Provide the following values in .tfvars:
