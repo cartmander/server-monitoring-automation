@@ -7,7 +7,7 @@ Provide the following values in .tfvars:
 
 - Workspace ID - ID of the new Log Analytics Workspace
 - Workspace Key - Key of the new Log Analytics Workspace
-- Scope Type - ResourceGroup or Tag
+- Scope Type - accepted values are either "ResourceGroup" or "Tag"
 - Scope - IF: ResourceGroup - name of resource group | IF: Tag - value for a "Terraform" Key
 ## Output
 
