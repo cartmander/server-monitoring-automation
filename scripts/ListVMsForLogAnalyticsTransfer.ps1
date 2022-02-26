@@ -17,7 +17,7 @@ try
 
     elseif ($scopeType -eq "Tag")
     {
-        #$virtualMachinesByScopeJson = az graph query -q "Resources | where type =~ 'Microsoft.Compute/virtualMachines' | where tags['terraform']=='ddd'"
+        $virtualMachinesByScopeJson = az vm list --query "[?contains(storageProfile.osDisk.osType, '$osType') && tags.terraform == '$scope' && powerState=='VM running']" -d -o json
     }
     
     $virtualMachinesByScopeObject =  $virtualMachinesByScopeJson | ConvertFrom-Json
