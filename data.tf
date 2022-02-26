@@ -1,5 +1,5 @@
-data "external" "windows_vm_list_by_scope" {
-  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVirtualMachinesByScope.ps1"]
+data "external" "windows_vms_for_log_analytics_transfer_list" {
+  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVMsForLogAnalyticsTransfer.ps1"]
   query = {
     osType = "Windows",
     agent = "MicrosoftMonitoringAgent",
@@ -8,8 +8,8 @@ data "external" "windows_vm_list_by_scope" {
   }
 }
 
-data "external" "linux_vm_list_by_scope" {
-  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVirtualMachinesByScope.ps1"]
+data "external" "linux_vms_for_log_analytics_transfer_list" {
+  program = ["Powershell.exe", "Set-ExecutionPolicy Bypass -Scope Process -Force; ./scripts/ListVMsForLogAnalyticsTransfer.ps1"]
   query = {
     osType = "Linux",
     agent = "OmsAgentForLinux",

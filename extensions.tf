@@ -1,5 +1,5 @@
 resource "azurerm_virtual_machine_extension" "microsoft_monitoring_agent" {
-  for_each                   = data.external.windows_vm_list_by_scope.result
+  for_each                   = data.external.windows_vms_for_log_analytics_transfer_list.result
   name                       = "MicrosoftMonitoringAgent"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
@@ -19,7 +19,7 @@ PROTECTED_SETTINGS
 }
 
 resource "azurerm_virtual_machine_extension" "oms_agent_for_linux" {
-  for_each                   = data.external.linux_vm_list_by_scope.result
+  for_each                   = data.external.linux_vms_for_log_analytics_transfer_list.result
   name                       = "OmsAgentForLinux"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"

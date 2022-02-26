@@ -34,7 +34,7 @@ try
             }
         }
 
-        $filteredVirtualMachines = $filteredVirtualMachines + @{$virtualMachineId=$virtualMachineId}
+        $filteredVirtualMachines += @{$virtualMachineId=$virtualMachineId}
     }
 
     $virtualMachineList = $filteredVirtualMachines | ConvertTo-Json
