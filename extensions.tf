@@ -39,7 +39,7 @@ PROTECTED_SETTINGS
 }
 
 resource "azurerm_virtual_machine_extension" "azure_monitor_windows_agent" {
-  for_each                   = var.has_azure_monitor ? data.external.windows_vms_for_azure_monitor_installation_list.result : {}
+  for_each                   = local.has_valid_azure_monitor_values ? data.external.windows_vms_for_azure_monitor_installation_list.result : {}
   name                       = "AzureMonitorWindowsAgent"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.Azure.Monitor"
@@ -49,7 +49,7 @@ resource "azurerm_virtual_machine_extension" "azure_monitor_windows_agent" {
 }
 
 resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
-  for_each                   = var.has_azure_monitor ? data.external.linux_vms_for_azure_monitor_installation_list.result : {}
+  for_each                   = local.has_valid_azure_monitor_values ? data.external.linux_vms_for_azure_monitor_installation_list.result : {}
   name                       = "AzureMonitorLinuxAgent"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.Azure.Monitor"

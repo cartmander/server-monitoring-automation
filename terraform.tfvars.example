@@ -1,5 +1,5 @@
-scope_type = <STRING>
-scope = <STRING>
+scope_type = <STRING> Accepted Values: ResourceGroup | Tag
+scope = <STRING> name_of_resource_group | value_of_a_terraform_key (Ex. Terraform: [value])
 
 has_log_analytics_workspace = <BOOL>
 log_analytics_workspace_id = <STRING>
