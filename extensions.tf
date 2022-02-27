@@ -5,7 +5,7 @@ resource "azurerm_virtual_machine_extension" "microsoft_monitoring_agent" {
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
   type                       = "MicrosoftMonitoringAgent"
   type_handler_version       = "1.0"
-  auto_upgrade_minor_version = "true"
+  auto_upgrade_minor_version = "false"
   settings = <<SETTINGS
     {
       "workspaceId": "${var.log_analytics_workspace_key}"
@@ -25,7 +25,7 @@ resource "azurerm_virtual_machine_extension" "oms_agent_for_linux" {
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
   type                       = "OmsAgentForLinux"
   type_handler_version       = "1.13"
-  auto_upgrade_minor_version = "true"
+  auto_upgrade_minor_version = "false"
   settings = <<SETTINGS
     {
       "workspaceId": "${var.log_analytics_workspace_id}"
@@ -45,7 +45,7 @@ resource "azurerm_virtual_machine_extension" "azure_monitor_windows_agent" {
   publisher                  = "Microsoft.Azure.Monitor"
   type                       = "AzureMonitorWindowsAgent"
   type_handler_version       = "1.0"
-  auto_upgrade_minor_version = "true"
+  auto_upgrade_minor_version = "false"
 }
 
 resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
@@ -55,5 +55,5 @@ resource "azurerm_virtual_machine_extension" "azure_monitor_linux_agent" {
   publisher                  = "Microsoft.Azure.Monitor"
   type                       = "AzureMonitorLinuxAgent"
   type_handler_version       = "1.5"
-  auto_upgrade_minor_version = "true"
+  auto_upgrade_minor_version = "false"
 }
