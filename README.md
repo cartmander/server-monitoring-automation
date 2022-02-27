@@ -1,14 +1,16 @@
-# Azure Agent Extension Transfer Automation
+# Azure Agent Installation Automation
 
-Running this Terraform automation will allow you to transfer your specified Log Analytics extension to a certain scope of Virtual Machines under a current subscription in Azure.
+Running this Terraform automation will allow you to transfer your specified Agent extensions to a certain scope of Virtual Machines under a current subscription in Azure.
 ## Terraform tfvars  variables
 
 Provide the following values in .tfvars:
 
-- Workspace ID - ID of the new Log Analytics Workspace
-- Workspace Key - Key of the new Log Analytics Workspace
-- Scope Type - ResourceGroup or Tag
-- Scope - Resource Group Name / Value for a "Terraform" Key (Example in Azure: Terraform: {value of your choice})
-## Output
+- Scope Type - (string) ResourceGroup or Tag
+- Scope - (string) Resource Group Name / Value for a "Terraform" Key (Example in Azure: Terraform: {value of your choice})
+- Log Analytics Workspace ID - (string) ID of the new Log Analytics Workspace
+- Log Analytics Workspace Key - (string) Key of the new Log Analytics Workspace
+- Has Log Analytics Workspace - (bool) If Log Analytics Workspace should be installed for both Windows and Linux VMs
+- Has Azure Monitor - (bool) If Azure Monitor should be installed for both Windows and Linux VMs
+## Expected Output
 
-The old Log Analytics extensions of the VMs of a specified scope should now be replaced by the one you provided in .tfvars. If there is no existing Log Analytics extension for certain VMs, it should still have the new Log Analytics extension.
+Whatever Agent extensions you are allowing to be installed using this automation, the old Agent extensions of the VMs of a specified scope should now be replaced by the ones you provided in .tfvars. If there are no existing Agent extensions for certain VMs, they still should have the new Agent extensions.
