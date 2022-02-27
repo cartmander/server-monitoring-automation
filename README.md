@@ -3,7 +3,7 @@
 Running this Terraform automation will allow you to transfer your specified Agent extensions to a certain scope of Virtual Machines under a current subscription in Azure.
 ## Terraform tfvars  variables
 
-Provide the following values in .tfvars:
+Provide the following values in .tfvars (please see the .example file):
 
 - Scope Type - (string) ResourceGroup | Tag
 - Scope - (string) name_of_resource_group | value_of_a_terraform_key (Ex. Terraform: [value])
