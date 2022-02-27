@@ -5,8 +5,8 @@ Running this Terraform automation will allow you to transfer your specified Agen
 
 Provide the following values in .tfvars:
 
-- Scope Type - (string) ResourceGroup or Tag
-- Scope - (string) Resource Group Name / Value for a "Terraform" Key (Example in Azure: Terraform: {value of your choice})
+- Scope Type - (string) ResourceGroup | Tag
+- Scope - (string) name_of_resource_group | value_of_a_terraform_key (Ex. Terraform: [value])
 - Log Analytics Workspace ID - (string) ID of the new Log Analytics Workspace
 - Log Analytics Workspace Key - (string) Key of the new Log Analytics Workspace
 - Has Log Analytics Workspace - (bool) If Log Analytics Workspace should be installed for both Windows and Linux VMs
