@@ -1,5 +1,5 @@
 resource "azurerm_virtual_machine_extension" "microsoft_monitoring_agent" {
-  for_each                   = var.has_log_analytics_workspace ? data.external.windows_vms_for_log_analytics_workspace_installation_list.result : {}
+  for_each                   = local.has_valid_log_analytics_workspace_values ? data.external.windows_vms_for_log_analytics_workspace_installation_list.result : {}
   name                       = "MicrosoftMonitoringAgent"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
@@ -19,7 +19,7 @@ PROTECTED_SETTINGS
 }
 
 resource "azurerm_virtual_machine_extension" "oms_agent_for_linux" {
-  for_each                   = var.has_log_analytics_workspace ? data.external.linux_vms_for_log_analytics_workspace_installation_list.result : {}
+  for_each                   = local.has_valid_log_analytics_workspace_values ? data.external.linux_vms_for_log_analytics_workspace_installation_list.result : {}
   name                       = "OmsAgentForLinux"
   virtual_machine_id         = each.value
   publisher                  = "Microsoft.EnterpriseCloud.Monitoring"
