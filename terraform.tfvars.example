@@ -1,4 +1,8 @@
-workspace_id = <STRING>
-workspace_key = <STRING>
 scope_type = <STRING>
 scope = <STRING>
+
+has_log_analytics_workspace = <BOOL>
+log_analytics_workspace_id = <STRING>
+log_analytics_workspace_key = <STRING>
+
+has_azure_monitor = <BOOL>
