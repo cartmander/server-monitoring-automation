@@ -3,12 +3,15 @@ $json = ConvertFrom-Json $jsonPayload
 
 $osType = $json.osType
 $agent = $json.agent
+$subscription = $json.subscription
 $scopeType = $json.scopeType
 $scope = $json.scope
 
 try 
 {
     $filteredVirtualMachines = @{}
+
+    az account set --subscription $subscription
 
     if ($scopeType -eq "ResourceGroup")
     {

@@ -1,3 +1,8 @@
+variable "subscription" {
+  description = "The Azure subscription that will be used"
+  type = string
+}
+
 variable "scope_type" {
   description = "The scope type of the VMs that will be modified"
   type = string
