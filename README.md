@@ -1,9 +1,9 @@
 # Azure Agent Installation Automation
 
-Running this Terraform automation will allow you to transfer your specified Agent extensions to a certain scope of Virtual Machines under a current subscription in Azure.
+Running this Terraform automation will allow you to update your specified Agent extensions to a certain scope of Virtual Machines under a current subscription in Azure.
 ## Terraform tfvars  variables
 
-Provide the following values in .tfvars:
+Provide the following values in .tfvars (please see the .example file):
 
 - Subscription - (string) The subscription to be used
 - Scope Type - (string) ResourceGroup | Tag
